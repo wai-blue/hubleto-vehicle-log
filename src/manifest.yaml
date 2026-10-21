@@ -1,0 +1,16 @@
+namespace: Hubleto\App\External\WaiBlue\VehicleLog
+appType: external
+monthlyPricePerUser: 0
+sidebarGroup: productivity
+rootUrlSlug: vehicle-log
+name: Vehicle log
+icon: fas fa-route
+author:
+  name: "WAI.blue"
+  nick: "wai.blue"
+highlight: Record vehicle trips, mileage and energy consumption.
+created: "2026-10-21 00:02:35"
+requires:
+  - Hubleto\App\Community\Auth
+  - Hubleto\App\Community\Settings
+  - Hubleto\App\Community\Desktop

@@ -1,0 +1,17 @@
+{
+  "name": "wai-blue/hubleto-vehicle-log",
+  "description": "Vehicle logbook for Hubleto",
+  "license": "GPL-3.0-only",
+  "type": "library",
+  "require": {
+    "php": "^8.2",
+    "hubleto/erp": "dev-main"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hubleto\\App\\External\\WaiBlue\\VehicleLog\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
