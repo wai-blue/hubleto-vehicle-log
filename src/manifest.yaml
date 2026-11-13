@@ -8,9 +8,10 @@ icon: fas fa-route
 author:
   name: "WAI.blue"
   nick: "wai.blue"
-highlight: Record vehicle trips, mileage and energy consumption.
+highlight: Record vehicle trips, mileage and energy consumption, and book vehicles in the calendar.
 created: "2026-10-21 00:02:35"
 requires:
   - Hubleto\App\Community\Auth
   - Hubleto\App\Community\Settings
   - Hubleto\App\Community\Desktop
+  - Hubleto\App\Community\Calendar

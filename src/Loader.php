@@ -15,12 +15,15 @@ class Loader extends \Hubleto\Erp\App
       '/^vehicle-log\/vehicles\/?$/' => Controllers\Vehicles::class,
       '/^vehicle-log\/vehicles\/add\/?$/' => ['controller' => Controllers\Vehicles::class, 'vars' => ['recordId' => -1]],
       '/^vehicle-log\/vehicles(\/(?<recordId>\d+))?\/?$/' => Controllers\Vehicles::class,
+      '/^vehicle-log\/bookings\/?$/' => Controllers\Bookings::class,
+      '/^vehicle-log\/bookings\/add\/?$/' => ['controller' => Controllers\Bookings::class, 'vars' => ['recordId' => -1]],
+      '/^vehicle-log\/bookings(\/(?<recordId>\d+))?\/?$/' => Controllers\Bookings::class,
       '/^vehicle-log\/api\/reverse-geocode\/?$/' => Controllers\Api\ReverseGeocode::class,
     ]);
 
-    $appMenu = $this->getService(\Hubleto\App\Community\Desktop\AppMenuManager::class);
-    $appMenu->addItem($this, 'vehicle-log', $this->translate('Trips'), 'fas fa-route');
-    $appMenu->addItem($this, 'vehicle-log/vehicles', $this->translate('Vehicles'), 'fas fa-car');
+    /** @var \Hubleto\App\Community\Calendar\Manager $calendarManager */
+    $calendarManager = $this->getService(\Hubleto\App\Community\Calendar\Manager::class);
+    $calendarManager->addCalendar($this, 'vehicle-log-bookings', Calendar::class);
   }
 
   public function installApp(int $round): void
@@ -28,6 +31,7 @@ class Loader extends \Hubleto\Erp\App
     if ($round == 1) {
       $this->getModel(Models\Vehicle::class)->upgradeSchema();
       $this->getModel(Models\Trip::class)->upgradeSchema();
+      $this->getModel(Models\Booking::class)->upgradeSchema();
     }
   }
 

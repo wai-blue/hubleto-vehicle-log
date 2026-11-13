@@ -1,6 +1,6 @@
 # Hubleto Vehicle Log
 
-External Hubleto application for recording business and private vehicle trips.
+External Hubleto application for recording business and private vehicle trips and for booking vehicles.
 
 ## Features
 
@@ -11,22 +11,25 @@ External Hubleto application for recording business and private vehicle trips.
 - an interactive OpenStreetMap route picker directly in the trip form;
 - reverse geocoding of selected points to real place names;
 - all business fields are optional, so a route can be saved before a vehicle or other details are known;
+- vehicle bookings (who has the vehicle from when to when), a "Bookings" tab in the vehicle form and a
+  "Vehicle bookings" calendar in the Hubleto Calendar; no double bookings; a vehicle with bookings cannot be deleted;
 - standard Hubleto tables, forms, date/time inputs and app navigation.
 
-The app uses Hubleto's built-in React components and includes its own JavaScript
-and CSS. It has no separate frontend build step and does not require Leaflet or
-a Google Maps API key.
+The app uses Hubleto's built-in React components, its own React form for the vehicle
+with the bookings tab (built with the project's `npm run build`), and its own
+JavaScript and CSS for the trip map. It does not require Leaflet or a Google Maps API key.
 
 ## Installation
 
-Requires an existing Hubleto 2 development installation with the Auth, Settings
-and Desktop apps. The Composer package currently depends on `hubleto/erp:dev-main`.
+Requires an existing Hubleto 2 development installation with the Auth, Settings,
+Desktop and Calendar apps. The Composer package currently depends on `hubleto/erp:dev-main`.
 
 After registration on Packagist, run these commands from the Hubleto project root:
 
 ```bash
 composer require wai-blue/hubleto-vehicle-log
 php hubleto app install 'Hubleto\App\External\WaiBlue\VehicleLog'
+npm install && npm run build
 ```
 
 Open **Vehicle log** in the sidebar, or visit `/vehicle-log`.
@@ -53,6 +56,17 @@ A trip can also be saved before a vehicle or other business details are known.
 The map lets you select its start and end points and fills in their coordinates
 and place names. It does not calculate driving directions or road distance;
 distance is calculated from the odometer readings or the kilometre split.
+
+## Bookings
+
+1. Open a vehicle and its **Bookings** tab, and click **Book the vehicle**; or open
+   **Vehicle log > Bookings** (`/vehicle-log/bookings`) and click **Book a vehicle**.
+2. Enter the start and end date (a booking may last several days), optionally the
+   times, the driver and a note. A booking without a name is named after its vehicle.
+3. Bookings are shown in the Hubleto Calendar as "Vehicle bookings", for every user.
+
+A booking cannot end before it starts, and a vehicle can be booked only once at a time
+(a booking may start when another one ends). Bookings are stored in `vehicle_log_bookings`.
 
 ## Map Services
 

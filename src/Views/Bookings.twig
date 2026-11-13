@@ -1,0 +1,8 @@
+<h1 class="app-main-title">{{ translate('Vehicle log') }} &gt; {{ translate('Bookings') }}</h1>
+
+<hblreact-table
+  int:record-id="{{ viewParams.recordId }}"
+  string:model="Hubleto/App/External/WaiBlue/VehicleLog/Models/Booking"
+></hblreact-table>
+
+{{ viewParams.app.renderFrontendAssets()|raw }}

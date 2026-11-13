@@ -33,7 +33,8 @@ class Vehicle extends \Hubleto\Erp\Model
 
   public string $table = 'vehicle_log_vehicles';
   public string $recordManagerClass = RecordManagers\Vehicle::class;
-  public ?string $lookupSqlValue = "trim(concat(ifnull({%TABLE%}.registration_number, ''), ' ', ifnull({%TABLE%}.make, ''), ' ', ifnull({%TABLE%}.model_name, '')))";
+  // A vehicle without registration number, make and model is shown as "#<id>", as in the trips filter.
+  public ?string $lookupSqlValue = "coalesce(nullif(trim(concat(ifnull({%TABLE%}.registration_number, ''), ' ', ifnull({%TABLE%}.make, ''), ' ', ifnull({%TABLE%}.model_name, ''))), ''), concat('#', {%TABLE%}.id))";
   public ?string $lookupUrlAdd = 'vehicle-log/vehicles/add';
   public ?string $lookupUrlDetail = 'vehicle-log/vehicles/{%ID%}';
 
