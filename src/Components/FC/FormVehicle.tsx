@@ -24,6 +24,7 @@ const TabBookings = (props: {form: FormMeta}) => {
     baseUrlSlug='vehicle-log/bookings'
     endpointParams={{idVehicle: props.form.id}}
     formDefaultValues={{id_vehicle: props.form.id}}
+    formModalProps={{type: 'right wide'}}
   />;
 };
 

@@ -10,6 +10,7 @@ const TableVehicles = (props: TableProps) => <Table
   parentApp={parentApp}
   model={parentApp + '/Models/Vehicle'}
   baseUrlSlug='vehicle-log/vehicles'
+  formModalProps={{type: 'right wide'}}
   renderForm={(table: TableMeta) => <FormVehicle {...table.getDefaultFormProps()} />}
   {...props}
 />;

@@ -4,6 +4,7 @@ namespace Hubleto\App\External\WaiBlue\VehicleLog\Models;
 
 use Hubleto\App\Community\Auth\Models\User;
 use Hubleto\Framework\Db\Column\Date;
+use Hubleto\Framework\Db\Column\Json;
 use Hubleto\Framework\Db\Column\Lookup;
 use Hubleto\Framework\Db\Column\Text;
 use Hubleto\Framework\Db\Column\Time;
@@ -45,6 +46,13 @@ class Booking extends \Hubleto\Erp\Model
         ->setDefaultValue($this->authProvider()->getUserId())
         ->setDefaultVisible()
       ,
+      'passengers' => (new Json($this, $this->translate('Passengers')))
+        ->setReactComponent('InputMultipleUsers')
+        ->setInputProps([
+          'searchPlaceholder' => $this->translate('Search passengers'),
+          'emptyText' => $this->translate('No passengers'),
+        ])
+      ,
       'note' => (new Text($this, $this->translate('Note')))->setDefaultVisible(),
     ]);
   }
@@ -57,6 +65,8 @@ class Booking extends \Hubleto\Erp\Model
     $description->setOrderBy('date_start', 'asc');
     $description->show(['header', 'fulltextSearch', 'columnSearch', 'moreActionsButton']);
     $description->hide(['footer']);
+    // The table would show only the user ids; the names are in the form.
+    $description->hideColumns(['passengers']);
 
     // In the bookings tab of a vehicle the vehicle is known, so its column is left out.
     $idVehicle = $this->router()->urlParamAsInteger('idVehicle');

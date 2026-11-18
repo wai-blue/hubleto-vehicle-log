@@ -66,8 +66,9 @@ distance is calculated from the odometer readings or the kilometre split.
 1. Open a vehicle and its **Bookings** tab, and click **Book the vehicle**; or open
    **Vehicle log > Bookings** (`/vehicle-log/bookings`) and click **Book a vehicle**.
 2. Enter the start and end date (a booking may last several days), optionally the
-   times, the driver and a note. A booking without a name is named after its vehicle.
+   times, the driver, the passengers and a note. A booking without a name is named after its vehicle.
 3. Bookings are shown in the Hubleto Calendar as "Vehicle bookings", for every user.
+   "My calendar" and the calendar of one user show the bookings the user drives or rides in.
 
 A booking cannot end before it starts, and a vehicle can be booked only once at a time
 (a booking may start when another one ends). Bookings are stored in `vehicle_log_bookings`.

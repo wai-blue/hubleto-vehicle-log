@@ -39,7 +39,7 @@ class Calendar extends \Hubleto\App\Community\Calendar\Calendar
     $showsOnlyMyBookings = (int) ($filter['fOwnership'] ?? 0) == 1;
     if ($showsOnlyMyBookings) $idSelectedUser = (int) $this->authProvider()->getUserId();
     if ($idSelectedUser > 0) {
-      $query = $query->where('vehicle_log_bookings.id_driver', $idSelectedUser);
+      $query = $mBooking->record->whereUserDrivesOrRides($query, $idSelectedUser);
     }
 
     $events = [];

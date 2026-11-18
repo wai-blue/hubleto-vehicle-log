@@ -65,4 +65,15 @@ class Booking extends \Hubleto\Erp\RecordManager
 
     return $query;
   }
+
+  // Bookings the user drives or rides in.
+  public function whereUserDrivesOrRides(mixed $query, int $idUser): mixed
+  {
+    return $query->where(function ($bookingsOfUser) use ($idUser) {
+      $bookingsOfUser->where($this->table . '.id_driver', $idUser);
+      $bookingsOfUser->orWhere(function ($bookingsWithUserAsPassenger) use ($idUser) {
+        $this->whereUserIdListContains($bookingsWithUserAsPassenger, 'passengers', $idUser);
+      });
+    });
+  }
 }
