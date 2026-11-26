@@ -182,7 +182,7 @@ class Trip extends \Hubleto\Erp\Model
     $vehicle = null;
     $idVehicle = (int) ($record['id_vehicle'] ?? 0);
     if ($idVehicle > 0) {
-      $vehicleRecord = $this->vehicleModel()->record->prepareReadQuery()->where('id', $idVehicle)->first();
+      $vehicleRecord = $this->vehicleModel()->record->prepareReadQuery()->where('vehicle_log_vehicles.id', $idVehicle)->first();
       $vehicle = $vehicleRecord?->toArray();
     }
 
